@@ -1,0 +1,69 @@
+<!-- NAVIGATION
+    ================================================== -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-vibrant" id="topnav">
+  <div class="container">
+
+    <!-- Toggler -->
+    <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Brand -->
+    <a class="navbar-brand mr-auto" routerLink="/admin">
+      <img src="./assets/img/logo.svg" alt="..." class="navbar-brand-img">
+    </a>
+
+    <!-- User -->
+    <div class="navbar-user">
+
+      <!-- Dropdown -->
+      <div class="dropdown">
+
+        <!-- Toggle -->
+        <a href="#" class="avatar avatar-sm avatar-online dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="./assets/img/avatars/profiles/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+        </a>
+
+        <!-- Menu -->
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="javascript:;" class="dropdown-item" (click)="signOut()">გამოსვლა</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse mr-auto order-lg-first" id="navbar">
+
+      <!-- Navigation -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="topnavClients" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active">
+            კლიენტები
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="topnavClients">
+            <li>
+              <a class="dropdown-item" routerLink="/admin/client-list" routerLinkActive="active">
+                კლიენტების სია
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/admin/client-add" routerLinkActive="active">
+                ახალი კლიენტი
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+
+  </div> <!-- / .container -->
+</nav>
+
+<!-- MAIN CONTENT
+    ================================================== -->
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div> <!-- / .main-content -->

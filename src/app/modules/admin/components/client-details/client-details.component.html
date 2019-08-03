@@ -1,0 +1,420 @@
+<!-- HEADER -->
+<div class="header">
+
+  <!-- Image -->
+  <img src="assets/img/covers/profile-cover-1.jpg" class="header-img-top" alt="...">
+
+  <div class="container">
+
+    <!-- Body -->
+    <div class="header-body mt-n5 mt-md-n6">
+      <div class="row align-items-end">
+        <div class="col-auto">
+
+          <!-- Avatar -->
+          <div class="avatar avatar-xxl header-avatar-top">
+            <img src="/api/files/{{ client.pictureFileId }}" alt="..." class="avatar-img rounded-circle border border-4 border-body">
+          </div>
+
+        </div>
+        <div class="col mb-3 ml-n3 ml-md-n2">
+
+          <!-- Pretitle -->
+          <h6 class="header-pretitle">
+            კლიენტი
+          </h6>
+
+          <!-- Title -->
+          <h1 class="header-title">
+            {{ client.firstName }} {{ client.lastName }}
+          </h1>
+
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .header-body -->
+
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- Form -->
+  <form class="mb-4" [formGroup]="clientForm">
+
+    <div class="row">
+      <div class="col-12">
+
+        <!-- Phone -->
+        <div class="form-group">
+
+          <!-- Label -->
+          <label>
+            პირადი ნომერი
+          </label>
+
+          <!-- Input -->
+          <input type="text" class="form-control" formControlName="pid" readonly>
+
+        </div>
+
+      </div>
+      <div class="col-12 col-md-6">
+
+        <!-- First name -->
+        <div class="form-group">
+
+          <!-- Label -->
+          <label>
+            სახელი
+          </label>
+
+          <!-- Input -->
+          <input type="text" class="form-control" formControlName="firstName" readonly>
+
+        </div>
+
+      </div>
+      <div class="col-12 col-md-6">
+
+        <!-- Last name -->
+        <div class="form-group">
+
+          <!-- Label -->
+          <label>
+            გვარი
+          </label>
+
+          <!-- Input -->
+          <input type="text" class="form-control" formControlName="lastName" readonly>
+
+        </div>
+
+      </div>
+      <div class="col-12 col-md-6">
+
+        <!-- Phone -->
+        <div class="form-group">
+
+          <!-- Label -->
+          <label>
+            ტელეფონის ნომერი
+          </label>
+
+          <!-- Input -->
+          <input type="text" class="form-control" formControlName="phoneNumber" readonly>
+
+        </div>
+
+      </div>
+      <div class="col-12 col-md-6">
+
+        <!-- Email address -->
+        <div class="form-group">
+
+          <!-- Label -->
+          <label>
+            სქესი
+          </label>
+
+          <!-- Input -->
+          <select class="form-control" formControlName="gender">
+            <option value="M" data-avatar-src="assets/img/avatars/profiles/avatar-2.jpg">
+              კაცი
+            </option>
+            <option value="F" data-avatar-src="assets/img/avatars/profiles/avatar-1.jpg">
+              ქალი
+            </option>
+          </select>
+        </div>
+
+      </div>
+    </div> <!-- / .row -->
+
+    <ng-container formGroupName="address">
+      <!-- Heading -->
+      <h2 class="mb-4">
+        ფიზიკური მისამართი
+      </h2>
+
+      <div class="row" formGroupName="physical">
+        <div class="col-12 col-md-4">
+
+          <!-- Country -->
+          <div class="form-group">
+
+            <!-- Label -->
+            <label>
+              ქვეყანა
+            </label>
+
+            <!-- Input -->
+            <input type="text" class="form-control" formControlName="country" readonly>
+
+          </div>
+
+        </div>
+        <div class="col-12 col-md-4">
+
+          <!-- City -->
+          <div class="form-group">
+
+            <!-- Label -->
+            <label>
+              ქალაქი
+            </label>
+
+            <!-- Input -->
+            <input type="text" class="form-control" formControlName="city" readonly>
+
+          </div>
+
+        </div>
+        <div class="col-12 col-md-4">
+
+          <!-- Address -->
+          <div class="form-group">
+
+            <!-- Label -->
+            <label>
+              მისამართი
+            </label>
+
+            <!-- Input -->
+            <input type="text" class="form-control" formControlName="address" readonly>
+
+          </div>
+
+        </div>
+      </div> <!-- / .row -->
+
+      <!-- Heading -->
+      <h2 class="mb-4">
+        იურიდიული მისამართი
+      </h2>
+
+      <div class="row" formGroupName="legal">
+        <div class="col-12 col-md-4">
+
+          <!-- Country -->
+          <div class="form-group">
+
+            <!-- Label -->
+            <label>
+              ქვეყანა
+            </label>
+
+            <!-- Input -->
+            <input type="text" class="form-control" formControlName="country" readonly>
+
+          </div>
+
+        </div>
+        <div class="col-12 col-md-4">
+
+          <!-- City -->
+          <div class="form-group">
+
+            <!-- Label -->
+            <label>
+              ქალაქი
+            </label>
+
+            <!-- Input -->
+            <input type="text" class="form-control" formControlName="city" readonly>
+
+          </div>
+
+        </div>
+        <div class="col-12 col-md-4">
+
+          <!-- Address -->
+          <div class="form-group">
+
+            <!-- Label -->
+            <label>
+              მისამართი
+            </label>
+
+            <!-- Input -->
+            <input type="text" class="form-control" formControlName="address" readonly>
+
+          </div>
+
+        </div>
+      </div> <!-- / .row -->
+    </ng-container>
+
+  </form>
+
+  <div class="row">
+    <div class="col-12">
+
+      <!-- Files -->
+      <div class="card" data-toggle="lists" data-options='{"valueNames": ["name"]}'>
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                ანგარიშები
+              </h4>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Button -->
+              <a href="javascript:;" class="btn btn-sm btn-primary" (click)="addAccount(content)">
+                ანგარიშის გახსნა
+              </a>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="card-body">
+
+          <!-- List -->
+          <ul class="list-group list-group-lg list-group-flush list my-n4">
+            <ng-template ngFor let-account [ngForOf]="accounts">
+              <li class="list-group-item px-0">
+
+                <div class="row align-items-center">
+                  <div class="col ml-n2">
+
+                    <!-- Title -->
+                    <h4 class="card-title mb-1 name">
+                      <a href="javascript:;" [class.text-danger]="!account.status">{{ account._id }}</a>
+                    </h4>
+
+                    <!-- Text -->
+                    <p class="card-text small text-muted mb-1">
+                      {{ accountType[account.type] }} - {{ account.currency }}
+                    </p>
+
+                    <!-- Time -->
+                    <p class="card-text small text-muted">
+                      <time [attr.datetime]="account.createdAt">{{ account.createdAt | date: 'medium' }}</time>
+                    </p>
+
+                  </div>
+                  <div class="col-auto" *ngIf="account.status">
+
+                    <!-- Button -->
+                    <a href="javascript:;" class="btn btn-sm btn-danger d-none d-md-inline-block" (click)="closeAccount(account)">
+                      წაშლა
+                    </a>
+
+                  </div>
+                </div> <!-- / .row -->
+
+              </li>
+            </ng-template>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+  </div> <!-- / .row -->
+</div>
+
+<ng-template #content let-accountModal>
+  <div class="modal-card card" data-toggle="lists" data-options='{"valueNames": ["name"]}'>
+    <div class="card-header">
+      <div class="row align-items-center">
+        <div class="col">
+
+          <!-- Title -->
+          <h4 class="card-header-title" id="exampleModalCenterTitle">
+            ანგარიშის გახსნა
+          </h4>
+
+        </div>
+        <div class="col-auto">
+
+          <!-- Close -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="accountModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+      </div> <!-- / .row -->
+    </div>
+    <div class="card-body">
+
+      <!-- Form -->
+      <form [formGroup]="accountForm" autocomplete="off">
+
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Email address -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                ანგარიშის ტიპი
+              </label>
+
+              <!-- Input -->
+              <select class="form-control" formControlName="type" required [class.is-invalid]="f.type.errors && (f.type.dirty || f.type.touched)">
+                <option value="1">
+                  მიმდინარე
+                </option>
+                <option value="2">
+                  შემნახველი
+                </option>
+                <option value="3">
+                  დაგროვებითი
+                </option>
+              </select>
+
+              <div class="invalid-feedback" *ngIf="f.type.errors && (f.type.dirty || f.type.touched)">
+                ველი აუცილებელია
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12">
+
+            <!-- Email address -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                ვალუტა
+              </label>
+
+              <!-- Input -->
+              <select class="form-control" formControlName="currency" required [class.is-invalid]="f.currency.errors && (f.currency.dirty || f.currency.touched)">
+                <option value="GEL">
+                  GEL
+                </option>
+                <option value="USD">
+                  USD
+                </option>
+                <option value="EUR">
+                  EUR
+                </option>
+                <option value="RUB">
+                  RUB
+                </option>
+              </select>
+
+              <div class="invalid-feedback" *ngIf="f.currency.errors && (f.currency.dirty || f.currency.touched)">
+                ველი აუცილებელია
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+
+      </form>
+
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary" [disabled]="accountForm.invalid" (click)="accountModal.close()">ანგარიშის შექმნა</button>
+    </div>
+  </div>
+</ng-template>

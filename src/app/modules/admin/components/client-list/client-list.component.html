@@ -1,0 +1,173 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+
+      <!-- Header -->
+      <div class="header mt-md-5">
+        <div class="header-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Pretitle -->
+              <h6 class="header-pretitle">
+                მიმოხილვა
+              </h6>
+
+              <!-- Title -->
+              <h1 class="header-title">
+                კლიენტები
+              </h1>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Button -->
+              <a class="btn btn-primary lift" routerLink="/admin/client-add">
+                ახალი კლიენტი
+              </a>
+
+            </div>
+          </div> <!-- / .row -->
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Nav -->
+              <ul class="nav nav-tabs nav-overflow header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/admin/client-list"
+                    routerLinkActive="active" [queryParams]="{ status: 2 }" queryParamsHandling="merge">
+                    ყველა <span class="badge badge-pill badge-soft-secondary">{{ counts.total }}</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/admin/client-list"
+                    routerLinkActive="active" [queryParams]="{ status: 1 }" queryParamsHandling="merge">
+                    აქტიური <span class="badge badge-pill badge-soft-secondary">{{ counts.active }}</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/admin/client-list"
+                    routerLinkActive="active" [queryParams]="{ status: 0 }" queryParamsHandling="merge">
+                    არააქტიური <span class="badge badge-pill badge-soft-secondary">{{ counts.inactive }}</span>
+                  </a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="card" data-toggle="lists" data-options='{"valueNames": ["clients-order", "clients-product", "clients-date", "clients-total", "clients-status", "clients-method"]}'>
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Search -->
+              <form class="row align-items-center" [formGroup]="searchForm">
+                <div class="col-auto pr-0">
+                  <span class="fe fe-search text-muted"></span>
+                </div>
+                <div class="col">
+                  <input type="search" class="form-control form-control-flush search" placeholder="ძებნა" formControlName="q">
+                </div>
+              </form>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm table-nowrap card-table">
+            <thead>
+              <tr>
+                <th>
+                  <span class="text-muted">
+                    პირადი ნომერი
+                  </span>
+                </th>
+                <th>
+                  <a href="javascript:;" class="text-muted sort" data-sort="clients-firstName" (click)="sort('firstName')" [ngClass]="sortParams.firstName">
+                    სახელი
+                  </a>
+                </th>
+                <th>
+                  <a href="javascript:;" class="text-muted sort" data-sort="clients-product" (click)="sort('lastName')" [ngClass]="sortParams.lastName">
+                    გვარი
+                  </a>
+                </th>
+                <th>
+                  <a href="javascript:;" class="text-muted sort" data-sort="clients-gender" (click)="sort('gender')" [ngClass]="sortParams.gender">
+                    სქესი
+                  </a>
+                </th>
+                <th>
+                  <span class="text-muted">
+                    ტელეფონის ნომერი
+                  </span>
+                </th>
+                <th colspan="2">
+                  <span class="text-muted">
+                    სტატუსი
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <ng-template ngFor let-client [ngForOf]="clients.items" let-index="index">
+                <tr>
+                  <td>
+                    {{ client.pid }}
+                  </td>
+                  <td class="clients-firstName">
+                    {{ client.firstName }}
+                  </td>
+                  <td class="clients-lastName">
+                    {{ client.lastName }}
+                  </td>
+                  <td class="clients-gender">
+                    {{ gender[client.gender] }}
+                  </td>
+                  <td>
+                    {{ client.phoneNumber }}
+                  </td>
+                  <td>
+                    <div class="badge badge-soft-{{ client.deletedAt ? 'danger' : 'success' }}">
+                      {{ client.deletedAt ? 'არააქტიური' : 'აქტიური' }}
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <div class="dropdown">
+                      <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fe fe-more-vertical"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" [routerLink]="['/admin/client-edit', client._id]">
+                          რედაქტირება
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/admin/client-details', client._id]">
+                          დეტალური ინფორმაცია
+                        </a>
+                        <a href="javascript:;" class="dropdown-item" (click)="removeClient(client)" *ngIf="!client.deletedAt">
+                          წაშლა
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <ngb-pagination *ngIf="clients.totalCount"
+        [(page)]="queryParams.page"
+        [pageSize]="queryParams.perPage"
+        [collectionSize]="clients.totalCount"
+        (pageChange)="onPageChange($event)"
+        [maxSize]="5" [rotate]="true"></ngb-pagination>
+
+    </div>
+  </div> <!-- / .row -->
+</div>

@@ -1,0 +1,333 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-8">
+
+      <!-- Header -->
+      <div class="header mt-md-5">
+        <div class="header-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h1 class="header-title">
+                კლიენტის რედაქტირება
+              </h1>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form class="mb-4" [formGroup]="clientForm" (submit)="updateClient()" autocomplete="off">
+
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Phone -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                პირადი ნომერი
+              </label>
+
+              <!-- Input -->
+              <input type="text" class="form-control" placeholder="___________" [data-mask]="'00000000000'"
+                formControlName="pid" required pattern="^\d{11}$"
+                [class.is-invalid]="f.pid.errors && (f.pid.dirty || f.pid.touched)">
+
+              <div class="invalid-feedback" *ngIf="f.pid.errors && (f.pid.dirty || f.pid.touched)">
+                ტექსტური, სავალდებულო, 11 ციფრი
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+
+            <!-- First name -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                სახელი
+              </label>
+
+              <!-- Input -->
+              <input type="text" class="form-control"
+                formControlName="firstName" required minlength="2" maxlength="50" pattern="^([a-zA-Z]+|[ა-ჰ]+)$"
+                [class.is-invalid]="f.firstName.errors && (f.firstName.dirty || f.firstName.touched)">
+
+              <div class="invalid-feedback" *ngIf="f.firstName.errors && (f.firstName.dirty || f.firstName.touched)">
+                ტექსტური, სავალდებულო, მინიმუმ 2 და მაქსიმუმ 50 სიმბოლო, უნდა შეიცავდეს მხოლოდ ქართული ან ლათინური ანბანის ასოებს, არ უნდა შეიცავდეს ერთდროულად ლათინურ და ქართულ ასოებს
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+
+            <!-- Last name -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                გვარი
+              </label>
+
+              <!-- Input -->
+              <input type="text" class="form-control"
+                formControlName="lastName" required minlength="2" maxlength="50" pattern="^([a-zA-Z]+|[ა-ჰ]+)$"
+                [class.is-invalid]="f.lastName.errors && (f.lastName.dirty || f.lastName.touched)">
+
+              <div class="invalid-feedback" *ngIf="f.lastName.errors && (f.lastName.dirty || f.lastName.touched)">
+                  ტექსტური, სავალდებულო, მინიმუმ 2 და მაქსიმუმ 50 სიმბოლო, უნდა შეიცავდეს მხოლოდ ქართული ან ლათინური ანბანის ასოებს, არ უნდა შეიცავდეს ერთდროულად ლათინურ და ქართულ ასოებს
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+
+            <!-- Phone -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                ტელეფონის ნომერი
+              </label>
+
+              <!-- Input -->
+              <input type="text" class="form-control" placeholder="5________" [data-mask]="'500000000'"
+                formControlName="phoneNumber" required pattern="^5[0-9]{8}$"
+                [class.is-invalid]="f.phoneNumber.errors && (f.phoneNumber.dirty || f.phoneNumber.touched)">
+
+              <div class="invalid-feedback" *ngIf="f.phoneNumber.errors && (f.phoneNumber.dirty || f.phoneNumber.touched)">
+                9 ციფრი, სავალდებულო, უნდა იწყებოდეს 5-იანით
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+
+            <!-- Email address -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                სქესი
+              </label>
+
+              <!-- Input -->
+              <select class="form-control"
+                data-toggle="select" data-options='{"minimum-results-for-search": -1}'
+                formControlName="gender" required
+                [class.is-invalid]="f.gender.errors && (f.gender.dirty || f.gender.touched)">
+                <option value="M" data-avatar-src="assets/img/avatars/profiles/avatar-2.jpg">
+                  კაცი
+                </option>
+                <option value="F" data-avatar-src="assets/img/avatars/profiles/avatar-1.jpg">
+                  ქალი
+                </option>
+              </select>
+
+              <div class="invalid-feedback" *ngIf="f.gender.errors && (f.gender.dirty || f.gender.touched)">
+                ველი აუცილებელია
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12">
+
+            <!-- Email address -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                ფოტოსურათი
+              </label>
+
+              <!-- Input -->
+              <!-- Single -->
+              <div class="dropzone dropzone-single" data-toggle="dropzone" data-options='{"url": "/api/files", "maxFiles": 1, "acceptedFiles": "image/*"}' (success)="dropzoneSuccess($event)">
+
+                <!-- Fallback -->
+                <div class="fallback">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="pictureFileUploads">
+                    <label class="custom-file-label" for="pictureFileUploads">ფაილის არჩევა</label>
+                  </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="dz-preview dz-preview-single">
+                  <div class="dz-preview-cover">
+                    <img class="dz-preview-img" src="..." alt="..." data-dz-thumbnail>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+
+        <ng-container formGroupName="address">
+          <!-- Heading -->
+          <h2 class="mb-4">
+            ფიზიკური მისამართი
+          </h2>
+
+          <div class="row" formGroupName="physical">
+            <div class="col-12 col-md-4">
+
+              <!-- Country -->
+              <div class="form-group">
+
+                <!-- Label -->
+                <label>
+                  ქვეყანა
+                </label>
+
+                <!-- Input -->
+                <input type="text" class="form-control"
+                  formControlName="country" required
+                  [class.is-invalid]="physical.country.errors && (physical.country.dirty || physical.country.touched)">
+
+                  <div class="invalid-feedback" *ngIf="physical.country.errors && (physical.country.dirty || physical.country.touched)">
+                    ველი აუცილებელია
+                  </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+
+              <!-- City -->
+              <div class="form-group">
+
+                <!-- Label -->
+                <label>
+                  ქალაქი
+                </label>
+
+                <!-- Input -->
+                <input type="text" class="form-control"
+                  formControlName="city" required
+                  [class.is-invalid]="physical.city.errors && (physical.city.dirty || physical.city.touched)">
+
+                  <div class="invalid-feedback" *ngIf="physical.city.errors && (physical.city.dirty || physical.city.touched)">
+                    ველი აუცილებელია
+                  </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+
+              <!-- Address -->
+              <div class="form-group">
+
+                <!-- Label -->
+                <label>
+                  მისამართი
+                </label>
+
+                <!-- Input -->
+                <input type="text" class="form-control"
+                  formControlName="address" required
+                  [class.is-invalid]="physical.address.errors && (physical.address.dirty || physical.address.touched)">
+
+                  <div class="invalid-feedback" *ngIf="physical.address.errors && (physical.address.dirty || physical.address.touched)">
+                    ველი აუცილებელია
+                  </div>
+              </div>
+
+            </div>
+          </div> <!-- / .row -->
+
+          <!-- Heading -->
+          <h2 class="mb-4">
+            იურიდიული მისამართი
+          </h2>
+
+          <div class="row" formGroupName="legal">
+            <div class="col-12 col-md-4">
+
+              <!-- Country -->
+              <div class="form-group">
+
+                <!-- Label -->
+                <label>
+                  ქვეყანა
+                </label>
+
+                <!-- Input -->
+                <input type="text" class="form-control"
+                  formControlName="country" required
+                  [class.is-invalid]="legal.country.errors && (legal.country.dirty || legal.country.touched)">
+
+                  <div class="invalid-feedback" *ngIf="legal.country.errors && (legal.country.dirty || legal.country.touched)">
+                    ველი აუცილებელია
+                  </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+
+              <!-- City -->
+              <div class="form-group">
+
+                <!-- Label -->
+                <label>
+                  ქალაქი
+                </label>
+
+                <!-- Input -->
+                <input type="text" class="form-control"
+                  formControlName="city" required
+                  [class.is-invalid]="legal.city.errors && (legal.city.dirty || legal.city.touched)">
+
+                  <div class="invalid-feedback" *ngIf="legal.city.errors && (legal.city.dirty || legal.city.touched)">
+                    ველი აუცილებელია
+                  </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+
+              <!-- Address -->
+              <div class="form-group">
+
+                <!-- Label -->
+                <label>
+                  მისამართი
+                </label>
+
+                <!-- Input -->
+                <input type="text" class="form-control"
+                  formControlName="address" required
+                  [class.is-invalid]="legal.address.errors && (legal.address.dirty || legal.address.touched)">
+
+                  <div class="invalid-feedback" *ngIf="legal.address.errors && (legal.address.dirty || legal.address.touched)">
+                    ველი აუცილებელია
+                  </div>
+              </div>
+
+            </div>
+          </div> <!-- / .row -->
+        </ng-container>
+
+        <div class="row">
+          <div class="col-12 col-md-6">
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary lift" [disabled]="clientForm.invalid">
+              ცვლილებების შენახვა
+            </button>
+
+          </div>
+        </div> <!-- / .row -->
+
+      </form>
+
+    </div>
+  </div> <!-- / .row -->
+</div>
